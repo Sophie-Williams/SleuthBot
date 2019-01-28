@@ -15,6 +15,6 @@ public class TimeMarker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeMarker.rectTransform.position = Vector3.Lerp(startPosition, endPosition, timeline.getCurrentTime() / 100);
+        timeMarker.rectTransform.anchoredPosition = Vector3.Lerp(startPosition, endPosition, timeline.getCurrentTime() / 100);
 	}
 }

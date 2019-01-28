@@ -83,6 +83,15 @@ public class Timeline : MonoBehaviour {
             itemVisualArray[count].GetComponent<ItemVisual>().setItem(whiteTape);
             count++;
         }
+        if(itemIndex == 6)
+        {
+            Debug.Log("Getting Jenkins Tape");
+            Item jenkinsTape = new Item("Jenkins Tape",
+                "Explanation given by Detective Jenkins. Click to replay.");
+            inventory.Add(jenkinsTape);
+            itemVisualArray[count].GetComponent<ItemVisual>().setItem(jenkinsTape);
+            count++;
+        }
     }
 
     public void resetInventory()

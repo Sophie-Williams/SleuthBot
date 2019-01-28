@@ -13,11 +13,13 @@ public class ItemVisual : MonoBehaviour {
     private EventTrigger.Entry mouseEntry;
     private EventTrigger.Entry mouseLeave;
     private EventTrigger.Entry mouseClick;
+
+    private int justClicked = 0;
     // Use this for initialization
     void Start () {
         systemColor = new Color(57f / 255f, 140f / 255f, 53f / 255f, 1f);
-        sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManager>();
-        itemFunctionality = GameObject.Find("SceneManager").GetComponent<ItemFunctionality>();
+        sceneManager = FindObjectOfType<SceneManager>();
+        itemFunctionality = FindObjectOfType<ItemFunctionality>();
     }
 	
 	// Update is called once per frame
@@ -40,21 +42,35 @@ public class ItemVisual : MonoBehaviour {
 
     void mouseExit(PointerEventData data)
     {
-        Text dialogueText = GameObject.Find("Dialogue").GetComponent<Text>();
-        dialogueText.color = sceneManager.currentColor;
-        dialogueText.text = sceneManager.currentText;
         sceneManager.activeMouse = true;
+        if (justClicked == 0)
+        {
+            Text dialogueText = GameObject.Find("Dialogue").GetComponent<Text>();
+            dialogueText.color = sceneManager.currentColor;
+            dialogueText.text = sceneManager.currentText;
+        }
+        else
+        {
+            justClicked-=2;
+        }
     }
 
     void mouseDown(PointerEventData data)
     {
+        justClicked += 1;
         itemFunctionality.activate(currentItem.itemName);
+    }
+
+    void mouseDownChallenge(PointerEventData data)
+    {
+        justClicked +=1;
+        itemFunctionality.challenge(currentItem.itemName);
     }
 
 
     public void setItem(Item item)
     {
-        if (item.itemName == null)
+        /*if (item.itemName == null)
         {
             currentItem = item;
             itemFunctionality.setSprite(item.itemName, GetComponent<Image>());
@@ -74,7 +90,7 @@ public class ItemVisual : MonoBehaviour {
             return;
         }
         else
-        {
+        {*/
             currentItem = item;
             EventTrigger trigger = GetComponent<EventTrigger>();
             mouseEntry = new EventTrigger.Entry();
@@ -89,8 +105,19 @@ public class ItemVisual : MonoBehaviour {
             mouseClick.eventID = EventTriggerType.PointerDown;
             mouseClick.callback.AddListener((data) => { mouseDown((PointerEventData)data); });
             trigger.triggers.Add(mouseClick);
+            trigger = GetComponent<EventTrigger>();
+            mouseClick = new EventTrigger.Entry();
+            mouseClick.eventID = EventTriggerType.PointerDown;
+            mouseClick.callback.AddListener((data) => { mouseDownChallenge((PointerEventData)data); });
+            trigger.triggers.Add(mouseClick);
             Debug.Log("Setting item in itemVisual: " + item.itemName);
             itemFunctionality.setSprite(item.itemName, GetComponent<Image>());
-        }
+        //}
     }
+
+
+
+
+
+
 }

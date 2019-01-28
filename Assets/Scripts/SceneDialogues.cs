@@ -10,6 +10,9 @@ public class SceneDialogues{
     public Dialogue[] scene3;
     public Dialogue[] scene4;
     public Dialogue[] scene5;
+    public Dialogue[] scene6;
+    public Dialogue[] scene7;
+    public Dialogue[] scene8;
 
 
     private Color systemColor;
@@ -105,7 +108,7 @@ public class SceneDialogues{
         {
             "I was coming home with Haley after dinner. It must have been 9:00 at night",
             "I... I feel so stupid.",
-            "I started yelling at her because her ring was gone",
+            "I started yelling at her because she lost our engagement ring",
             "That ring... I bought it four months ago, and she never took it off.",
             "I don't believe that she'd lose it.",
             "After we fought, I walked downstairs to get some fresh air.",
@@ -160,5 +163,58 @@ public class SceneDialogues{
         {
             "END OF STATEMENT"
         });
+
+        scene6 = new Dialogue[2];
+        scene6[0] = new Dialogue("System", reportColor, new string[]
+        {
+            "CCTV Recording Data: 09-24",
+            "2000: Mr. Smith enters through front entrance",
+            "2100: Mr. White and Ms. O'Neil enter through front entrance",
+            "2230: Mr. White exits through front entrance"
+        });
+        scene6[1] = new Dialogue("System", systemColor, new string[]
+        {
+            "END OF STATEMENT"
+        });
+
+        scene7 = new Dialogue[5];
+        scene7[0] = new Dialogue("Jenkins", jenkinsColor, new string[]
+        {
+            "I'd rather you not exaggerate. O'Neil and White couldn't have been arguing at 10:30, because White had already " +
+            "left the building.",
+            "There was only one person in the apartment: Ms. O'Neil."
+        });
+        scene7[1] = new Dialogue("Smith", smithColor, new string[]
+        {
+            "I'd rather you not call me a liar. I know what I heard."
+        });
+        scene7[2] = new Dialogue("Miller", millerColor, new string[]
+        {
+            "Hey, maybe he's telling the truth. Give me the file, we'll look over it more closely."
+        });
+        scene7[3] = new Dialogue("Jenkins", jenkinsColor, new string[]
+        {
+            "Don't be ridiculous, there's a perfectly reasonable explanation for what's going on."
+        });
+        scene7[4] = new Dialogue("System", systemColor, new string[]
+        {
+            "- Jenkins's Explanation added to Inventory"
+        });
+
+        scene8 = new Dialogue[2];
+        scene8[0] = new Dialogue("Jenkins", jenkinsColor, new string[]
+        {
+            "Look, that old guy's probably just got a bad memory.",
+            "White already said that he was arguing with the victim, right?",
+            "He probably attacked her during that argument, at 21:30.",
+            "Smith probably heard them then.",
+            "White then hid the body in the apartment and left at 22:30 to find somewhere to get rid of her.",
+            "We're just lucky we got to the apartment before he could get away with it."
+        });
+        scene8[1] = new Dialogue("System", systemColor, new string[]
+        {
+            "END OF STATEMENT"
+        });
+
     }
 }
